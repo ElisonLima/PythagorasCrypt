@@ -1,0 +1,87 @@
+
+#variáveis globais | global var
+tori = "2rynibhfbadvfoh4"
+
+
+#funções | functions
+
+
+def Arq(msg):
+    from time import sleep
+    arquivo = open("cifras.txt", "r+")
+    arquivo.write(str(msg))
+    
+    
+    
+        
+def EscL(msg):
+    print("\n")
+    tm = int(len(msg)*1.5)
+    print("~"*tm)
+    print(f"{msg:^75}")
+    print("~"*tm)
+
+
+def G_alf():
+    from string import ascii_lowercase
+    alfab = ascii_lowercase
+    cont = 0
+    for i in alfab:
+        cont += 1
+        print(i, end=' | ')
+        if cont == 9:
+            print('\n')
+            cont = 0
+    n = 10
+    print("\n")
+    print("-"*int(n*3.5))
+        
+        
+def S_num():
+    n = 10
+    for i in range(1, n):
+        print(i, end=' | ')
+    print('\n')
+    print('-'*int(n*3.5))
+
+
+#função de encriptar ou descriptar    
+def Crypt(msg, dicio):
+    from math import factorial
+    global tori
+    txt = ""
+    while txt != tori:#limite de acordo o número de combinações | limit based on number of combinations# 
+        from random import choice
+        for c in msg:
+            for k, v in dicio.items():
+                if c in k:
+                    txt += choice(v)
+                elif c in v:
+                    txt += choice(k)
+        #descartável | teste de igualdade
+        if txt == tori:
+            print(txt)
+            break
+        if len(txt) > len(tori):
+            txt = ""
+        #fim_descartável
+
+
+#função que gera a tabela de pitágoras
+def G_pyt(msg=" "):
+    msg = str(msg.strip(" "))
+    dPyt = {'1':'ajs', '2':'bkt', '3':'clu', '4':'dmv',
+              '5':'enw', '6':'fox', '7':'gpy', '8':'hqz',
+              '9':'ir'}
+    Crypt(msg, dPyt)  
+       
+    
+#INICIO DO CÓDIGO
+EscL("Tabela de Pitágoras - Pythagorean Cryptography System")
+S_num()
+G_alf()
+#"ORIGINAL: b97592862144668d" código encontrado no Cicada 3301/2018
+G_pyt("b97592862144668d")
+print(f"TRADUÇÃO ORIGINAL: {tori:>10}")
+
+
